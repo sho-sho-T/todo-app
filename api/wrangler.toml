@@ -1,6 +1,11 @@
 name = "api"
 compatibility_date = "2023-12-01"
 
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "todo-d1-tutorial"
+database_id = "689f6c31-688d-478a-9ba2-6be06b1ee602"
+
 # [vars]
 # MY_VAR = "my-variable"
 
@@ -11,11 +16,6 @@ compatibility_date = "2023-12-01"
 # [[r2_buckets]]
 # binding = "MY_BUCKET"
 # bucket_name = "my-bucket"
-
-# [[d1_databases]]
-# binding = "DB"
-# database_name = "my-database"
-# database_id = ""
 
 # [ai]
 # binding = "AI"

@@ -10,25 +10,25 @@ export const EditTodo = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchTodo = async () => {
+      try {
+        const response = await axios.get(`${TODO_APP_ROOT_URL}/todos/${id}`);
+        const { task, status } = response.data;
+        setTask(task);
+        setStatus(status);
+      } catch (error) {
+        console.error('Error fetching todo:', error);
+      }
+    };
+  
     fetchTodo();
-  }, []);
-
-  const fetchTodo = async () => {
-    try {
-      const response = await axios.get(`${TODO_APP_ROOT_URL}/todos/${id}`);
-      const { task, status } = response.data;
-      setTask(task);
-      setStatus(status);
-    } catch (error) {
-      console.error('Error fetching todo:', error);
-    }
-  };
-
+  }, [id]);
+  
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       await axios.put(`${TODO_APP_ROOT_URL}/todos/${id}`, { task, status });
-        navigate('/')
+      navigate('/');
     } catch (error) {
       console.error('Error updating todo:', error);
     }

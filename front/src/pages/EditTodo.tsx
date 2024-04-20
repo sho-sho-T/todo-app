@@ -35,35 +35,44 @@ export const EditTodo = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4">Edit Todo</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="task" className="block mb-2">Task:</label>
-          <input
-            type="text"
-            id="task"
-            value={task}
-            onChange={(e) => setTask(e.target.value)}
-            className="border border-gray-300 px-2 py-1 rounded"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="status" className="block mb-2">Status:</label>
-          <select
-            id="status"
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            className="border border-gray-300 px-2 py-1 rounded"
-          >
-            <option value="todo">Todo</option>
-            <option value="in_progress">In Progress</option>
-            <option value="done">Done</option>
-          </select>
-        </div>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
-      </form>
+    <div className="max-w-md mx-auto">
+        <h2 className="text-xl font-bold mb-4">タスクを編集</h2>
+            <form onSubmit={handleSubmit}>
+                <div className="mb-4">
+                    <label htmlFor="task" className="block mb-2 font-medium">
+                    タスク:
+                    </label>
+                    <input
+                    type="text"
+                    id="task"
+                    value={task}
+                    onChange={(e) => setTask(e.target.value)}
+                    className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label htmlFor="status" className="block mb-2 font-medium">
+                    ステータス:
+                    </label>
+                    <select
+                    id="status"
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                    className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                    <option value="todo">未完了</option>
+                    <option value="in_progress">進行中</option>
+                    <option value="done">完了</option>
+                    </select>
+                </div>
+                <button
+                    type="submit"
+                    className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    更新
+                </button>
+            </form>
     </div>
   );
 };

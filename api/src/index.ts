@@ -1,9 +1,12 @@
 import { Hono } from 'hono'
+import { cors } from 'hono/cors';
 import { z } from 'zod'
 
 type Bindings = {
   DB: D1Database
 };
+
+const TODO_APP_FRONT_ROOT_URL = 'https://todo-app-ccq.pages.dev'
 
 const app = new Hono<{Bindings: Bindings}>()
 
@@ -12,6 +15,12 @@ const todoSchema = z.object({
   task: z.string(),
   status: z.enum(['todo', 'in_progress', 'done']),
 });
+
+app.use('/todos/*', cors({
+  origin: TODO_APP_FRONT_ROOT_URL,
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowHeaders: ['Content-Type'],
+}));
 
 // GET /todos - 全てのTodoアイテムを取得
 app.get('/todos', async (c) => {

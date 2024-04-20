@@ -37,20 +37,29 @@ export const TodoList = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4">Todo List</h2>
-      <ul className="mb-4">
-        {todos.map((todo) => (
-          <li key={todo.id} className="flex justify-between items-center mb-2">
-            <span>{todo.task}</span>
-            <div>
-              <Link to={`/edit/${todo.id}`} className="text-blue-500 mr-2">Edit</Link>
-              <button onClick={() => deleteTodo(todo.id)} className="text-red-500">Delete</button>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <Link to="/addTodo" className="bg-blue-500 text-white px-4 py-2 rounded">Add Todo</Link>
-    </div>
-  );
+    <div className="max-w-md mx-auto">
+      <h2 className="text-xl font-bold mb-4">タスク一覧</h2>
+        <ul className="mb-4 space-y-4">
+          {todos.map((todo) => (
+            <li key={todo.id} className="bg-white p-4 rounded shadow">
+              <div className="flex justify-between items-center">
+                <span className="text-lg">{todo.task}</span>
+                <div>
+                  <Link to={`/editTodo/${todo.id}`} className="text-blue-500 mr-4">
+                    編集
+                  </Link>
+                  <button onClick={() => deleteTodo(todo.id)} className="text-red-500">
+                    削除
+                  </button>
+                </div>
+              </div>
+              {todo.status && <p className="mt-2 text-gray-500">{todo.status}</p>}
+            </li>
+          ))}
+        </ul>
+      <Link to="/addTodo" className="bg-blue-500 text-white px-4 py-2 rounded block text-center">
+        タスクを追加
+      </Link>
+   </div>
+  )
 };
